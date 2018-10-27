@@ -1,0 +1,17 @@
+.help-inline{
+    text-align: left;
+    color: red;
+    font-size: 12px;
+}
+.error_msg{
+    text-align: left;
+    padding: 10px;
+    font-size: 13px;
+    margin-bottom: 12px;
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: rgb(238, 211, 215);
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}

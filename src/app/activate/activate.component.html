@@ -1,0 +1,156 @@
+<app-header></app-header>
+
+<!-- Main section code start here -->
+
+<section>
+	<div class="height40"></div>
+	<div class="bg-light shadow-sm p-5 p-0-xs white-box mt-5">
+		<div class="container">
+			<div class="row">
+			  	<div class="col-md-6">
+			  		<div class="steps position-relative">
+			  			<div class="line"></div>
+			  			<ul class="p-0 text-center">
+			  				<li class="box text-dark"> Activaction <br> <br> 
+			  					<a href="javascript:void(0)" class="circle"> <span class="inside" *ngIf="activation"> </span> </a>
+			  				</li>
+			  				<li class="box"> Set Passcode <br> <br> <a href="javascript:void(0)" class="circle"> <span class="inside" *ngIf="set_passcode"> </span></a> </li>
+			  				<li class="box"> Confirm Passcode <br> <br> <a href="javascript:void(0)" class="circle"><span class="inside" *ngIf="confirm_passcode"> </span> </a></li>
+			  			</ul>
+			  		</div>
+			  		<div class="height20"></div>
+			  		<p class="m-0 color-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+			  		<div class="height20"></div>
+			  		<p class="m-0 color-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+			  	</div>
+          <div class="col-md-1 d-xs-none"></div>
+          <!-- activation code start here -->
+
+			  	<div class="col-md-5 text-center" *ngIf="activation" >
+			  		<div class="height40 d-md-none"></div>
+			  		<div class="w-100-xs mx-auto">
+				  		<h3>Activate Your Subscription</h3>
+				  		<div class="height20"></div>
+				  		<h4>Subscribe ID</h4>
+				  		<div class="height20"></div>
+				  		<div class="pscd">
+							<form [formGroup]="activation_code">
+								<input class="pscd-txt" formControlName="code_1" type="text" maxlength="1" #input1 (keyup)="keytab($event)">
+								<input class="pscd-txt" formControlName="code_2" type="text" maxlength="1" (keyup)="keytab($event)">
+								<input class="pscd-txt" formControlName="code_3" type="text" maxlength="1" (keyup)="keytab($event)">
+								<input class="pscd-txt" formControlName="code_4" type="text" maxlength="1" (keyup)="keytab($event)">
+							</form>
+						</div>
+				  		<div class="height20"></div>
+				  		<div class="pscd">
+				  			<button class="pscd-btn">1</button>
+				  			<button class="pscd-btn">2</button>
+				  			<button class="pscd-btn">3</button>
+				  			<button class="pscd-btn">4</button>
+				  			<button class="pscd-btn">5</button>
+				  			<button class="pscd-btn">6</button>
+				  			<button class="pscd-btn">7</button>
+				  			<button class="pscd-btn">8</button>
+				  			<button class="pscd-btn">9</button>
+				  			<button class="pscd-btn"><img src="assets/images/arrow-left.png"></button>
+				  			<button class="pscd-btn">0</button>
+				  			<button class="pscd-btn"><img src="assets/images/arrow-right.png"></button>
+				  		</div>
+				  		<div class="height20"></div>
+				  		<div class="pscd">
+					  		<button class="btn btn-lg w-41">Get Help</button>
+					  		<button [disabled]="!activation_code.valid" (click)="set_option('set_passcode',activation_code.value)" class="btn btn-danger btn-lg w-41">Set Passcode</button>
+				  		</div>
+				  	</div>
+          </div>
+
+          <!-- activation code end here -->
+          <!-- set passcode code start here -->
+
+          <div class="col-md-5 text-center" *ngIf="set_passcode">
+			  		<div class="height40 d-md-none"></div>
+			  		<div class="w-100-xs mx-auto">
+				  		<h3>Setup Your Pin</h3>
+				  		<div class="height20"></div>
+				  		<h4>Your Passcode</h4>
+				  		<div class="height20"></div>
+				  		<div class="pscd">
+							<form [formGroup]="set_code">
+								<input class="pscd-txt" type="password" formControlName="set_code_1" maxlength="1" #input2 (keyup)="keytab($event)">
+								<input class="pscd-txt" type="password" formControlName="set_code_2" maxlength="1" (keyup)="keytab($event)">
+								<input class="pscd-txt" type="password" formControlName="set_code_3" maxlength="1" (keyup)="keytab($event)">
+								<input class="pscd-txt" type="password" formControlName="set_code_4" maxlength="1" (keyup)="keytab($event)">
+							</form>
+				  		</div>
+				  		<div class="height20"></div>
+				  		<div class="pscd">
+				  			<button class="pscd-btn">1</button>
+				  			<button class="pscd-btn">2</button>
+				  			<button class="pscd-btn">3</button>
+				  			<button class="pscd-btn">4</button>
+				  			<button class="pscd-btn">5</button>
+				  			<button class="pscd-btn">6</button>
+				  			<button class="pscd-btn">7</button>
+				  			<button class="pscd-btn">8</button>
+				  			<button class="pscd-btn">9</button>
+				  			<button class="pscd-btn"><img src="assets/images/arrow-left.png"></button>
+				  			<button class="pscd-btn">0</button>
+				  			<button class="pscd-btn"><img src="assets/images/arrow-right.png"></button>
+				  		</div>
+				  		<div class="height20"></div>
+				  		<div class="pscd">
+					  		<button class="btn btn-lg w-41">Get Help</button>
+					  		<button type="button" [disabled]="!set_code.valid" (click)="set_option('confirm_passcode',set_code.value)" class="btn btn-danger btn-lg w-41">Confirm Passcode</button>
+				  		</div>
+				  	</div>
+			  	</div>
+
+		  <!-- passcode code end here-->
+		  
+		  <!-- confirm passcode code start here -->
+
+		  <div class="col-md-5 text-center" *ngIf="confirm_passcode">
+			<div class="height40 d-md-none"></div>
+			<div class="w-100-xs mx-auto">
+				<h3>Setup Your Pin</h3>
+				<div class="height20"></div>
+				<h4>Confirm Passcode</h4>
+				<div class="height20"></div>
+				<div class="pscd">
+					<form [formGroup]="confirm_code">
+						<input class="pscd-txt" type="password" formControlName="confirm_code_1" maxlength="1" #input3 (keyup)="keytab($event)">
+						<input class="pscd-txt" type="password" formControlName="confirm_code_2" maxlength="1" (keyup)="keytab($event)">
+						<input class="pscd-txt" type="password" formControlName="confirm_code_3" maxlength="1" (keyup)="keytab($event)">
+						<input class="pscd-txt" type="password" formControlName="confirm_code_4" maxlength="1" (keyup)="keytab($event)">
+					</form>
+				</div>
+				<div class="height20"></div>
+				<div class="pscd">
+					<button class="pscd-btn">1</button>
+					<button class="pscd-btn">2</button>
+					<button class="pscd-btn">3</button>
+					<button class="pscd-btn">4</button>
+					<button class="pscd-btn">5</button>
+					<button class="pscd-btn">6</button>
+					<button class="pscd-btn">7</button>
+					<button class="pscd-btn">8</button>
+					<button class="pscd-btn">9</button>
+					<button class="pscd-btn"><img src="assets/images/arrow-left.png"></button>
+					<button class="pscd-btn">0</button>
+					<button class="pscd-btn"><img src="assets/images/arrow-right.png"></button>
+				</div>
+				<div class="height20"></div>
+				<div class="pscd">
+					<button class="btn btn-lg w-41">Get Help</button>
+					<button type="button" [disabled]="!confirm_code.valid" (click)="set_option('',confirm_code.value)" class="btn btn-danger btn-lg w-41">Continue</button>
+				</div>
+			</div>
+		</div>
+
+		  <!-- end confirm code here -->
+		  	</div>
+		</div>
+	</div>
+</section>
+
+<!-- Main section code end here -->

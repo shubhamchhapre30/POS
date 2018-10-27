@@ -1,0 +1,158 @@
+<app-header></app-header>
+<section>
+	<div class="height50"></div>
+	<app-sidebar></app-sidebar>
+
+	<div class="p-0-xs mt-5 ml-9">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-4">
+							<input class="form-control search-dsbrd border-0" type="text" (keyup)="search_filter($event.target.value)"
+							 placeholder="Start typing or Scan" aria-label="Search">
+							<i class="fa fa-search search-icon"></i>
+							<div class="height20"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4" *ngIf="orders !=''">
+					<div class="bg-light-grey p-3 border border-bottom-0">
+						<h5 class="m-0">Add Table</h5>
+					</div>
+					<div class="add-table">
+						<div class="bg-light p-3 border border-bottom-0" *ngFor="let order of orders">
+							<div class="row" (click)="open_quantity_modal(quantitymodal,order.item_id,order.quantity)">
+								<div class="col-6">
+									<h6>{{order.quantity}} {{order.name | capitalizeFirst}}</h6>
+									<p class="text-secondary m-0" *ngFor="let extra of order.extra">1 {{extra.name | capitalizeFirst }}</p>
+								</div>
+								<div class="col-6 mt-2">
+									<h6 class="pull-right text-right">${{order.price | roundNumber}}
+										<i class="fa fa-close text-danger cursor-pointer" (click)="remove_item(order.item_id)"></i>
+									</h6>
+									<h6 class="text-right" style="clear: both;" *ngFor="let extra of order.extra">${{extra.price | roundNumber}}</h6>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="bg-light ptb-1 p-3 border">
+						<div class="row">
+							<div class="col-6">
+								<h6>Subtotal</h6>
+								<h6>Discount</h6>
+								<a href="javascript:void(0)" class="black_color"><h6 class="m-0" (click)="open_tax_modal(taxmodal)" >Tax({{tax_rate_order}}%)</h6></a>
+							</div>
+							<div class="col-6 text-right">
+								<h6><b>${{total_pay | roundNumber}}</b></h6>
+								<h6><b>0%</b></h6>
+								<h6 class="m-0"><b>${{tax_amount | number:'.2'}}</b></h6>
+							</div>
+						</div>
+					</div>
+					<div class="bg-light-grey p-3 border h-60">
+						<h5 class="pull-left">Total ({{total_order_count}} Items)</h5>
+						<h5 class="pull-right"><b>${{(total_pay + tax_amount) | number:'.2'}}</b></h5>
+					</div>
+					<div class="p-3 border">
+						<button class="btn btn-success w-100 h-60" routerLink="/payment">
+							<h5 class="m-0"> Pay Now (${{(total_pay + tax_amount) | number:'.2'}}) </h5>
+						</button>
+					</div>
+				</div>
+				<div [ngClass]="{'col-md-8':orders!='','col-md-12':orders == ''}">
+					<h5>Main Menu</h5>
+					<hr>
+					<div *ngFor="let item of items">
+						<h5 class="font-18">{{item.menu_name |capitalizeFirst }}</h5>
+						<div class="row">
+							<div class="margin-bottom10" [ngClass]="{'col-md-3':orders!='','col-md-2':orders == ''}" *ngFor="let list of item.sub_menu">
+								<a href="javascript:void(0)" (click)="add_item(list)">
+									<div class="bg-light p-2 border">
+										<img src="{{Path}}assets/menu_image/{{list.image}}" class="w-100 image_height">
+										<div class="height10"></div>
+										<h6 class="text-body">{{list.sub_menu_name | capitalizeFirst}}</h6>
+										<h6 class="text-success">${{list.price | roundNumber}}</h6>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<p *ngIf="items == ''" class="margin-0-auto">No item found.</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<ng-template #quantitymodal>
+		<!-- Modal Header -->
+		<div class="modal-header">
+			<button type="button" class="btn bg-light border pull-left">Edit modifier</button>
+			<button type="button" class="close" (click)="close_modal()">&times;</button>
+		</div>
+
+		<!-- Modal body -->
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-3">
+					<button class="btn bg-light border w-100" [disabled]="quantity == 0" (click)="minus_quantity()">-</button>
+				</div>
+				<div class="col-6">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Quantity" [(ngModel)]="quantity" maxlength="2">
+					</div>
+				</div>
+				<div class="col-3">
+					<button class="btn bg-light border w-100" [disabled]="quantity == 100 " (click)="add_quantity()">+</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-6">
+					<button class="btn bg-light border w-100" (click)="remove_item()">Remove Item</button>
+				</div>
+				<div class="col-6">
+					<button class="btn bg-light border w-100">Add Discount</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal footer -->
+		<div class="modal-footer">
+			<button type="button" class="btn w-100" (click)="close_modal();"> Cancel</button>
+			<button type="button" class="btn bg-success text-white w-100" (click)="save_quantity()">Save</button>
+		</div>
+
+	</ng-template>
+</section>
+
+   <!-- Modal poup for selecting tax  -->
+   <ng-template #taxmodal>
+	<!-- Modal Header -->
+	<div class="modal-header">
+		<h5>Add Tax</h5>
+		<button type="button" class="close" (click)="close_modal()" >&times;</button>
+		</div>
+		
+		<!-- Modal body -->
+		<div class="modal-body">
+		  <div class="row">
+			<div class="col-6">
+			  <div class="form-group"> 
+				<select class="col-md-12" [(ngModel)]="tax_rate_order" style="border-radius:5px;padding:5px">
+					<option value="0" selected>Select tax</option>
+					<option *ngFor="let t of tax_list" value="{{t.tax_rate}}">{{t.tax_name | capitalizeFirst}}({{t.tax_rate}}%)</option>
+				</select>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		
+		<!-- Modal footer -->
+		<div class="modal-footer">
+		  <button type="button" class="btn w-10" (click)="close_tax_modal();" > Cancel</button>
+		  <button type="button" class="btn bg-success text-white w-10" (click)="selected_tax()" >Save</button>
+		</div>
+		
+	</ng-template>

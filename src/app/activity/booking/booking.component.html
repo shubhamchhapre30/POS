@@ -1,0 +1,166 @@
+<app-header></app-header>
+<section>
+        <div class="height50"></div>
+    <app-sidebar></app-sidebar>
+    <div class="p-0-xs mt-5 ml-9">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <input class="form-control search-dsbrd border-0" (keyup)="filter_item($event.target.value)" type="text" placeholder="Search by Items" aria-label="Search">
+                        <i class="fa fa-search search-icon"></i>
+                        <div class="height20"></div>
+                      </div>
+                      <div class="col-md-6 offset-2">
+                          <div class="row mt-3">
+                              <div class="col-md-3">
+                                  <div class="btn bg-white border border-info w-100">Custom Item</div>
+                              </div>
+                              <div class="col-md-3">
+                                  <div class="btn bg-white border border-danger w-100">Discount</div>
+                              </div>
+                              <div class="col-md-3">
+                                  <div class="btn bg-white border border-success w-100">Cash Drawer</div>
+                              </div>
+                              <div class="col-md-3">
+                                  <div class="btn bg-white border border-primary w-100" (click)="clear_orders()" >Clear Order</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-4" *ngIf="orders !=''">
+                        <div class="position-fixed w-44p5">
+                            
+                              <div class="bg-light-grey p-3 border border-bottom-0">
+                                  <h5 class="m-0">Current Order</h5>
+                              </div>
+                              <div class="add-booking-order">
+                                  <div class="bg-light p-3 border border-bottom-0" *ngFor="let item of orders" >
+                                      <div class="row" (click)="open_quantity_modal(quantitymodal,item.item_id,item.quantity)">
+                                          <div class="col-6">
+                                              <h6>{{item.quantity}} {{item.name | capitalizeFirst}}</h6>
+                                              <p class="text-secondary m-0" *ngFor="let extra of item.extra" >1 {{extra.name | capitalizeFirst }}</p>
+                                          </div>
+                                          <div class="col-6 mt-2">
+                                              <h6 class="pull-right text-right">${{item.price | roundNumber}}</h6>
+                                              <h6 class="text-right" style="clear: both;" *ngFor="let extra of item.extra">${{extra.price | roundNumber}}</h6>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="bg-light ptb-1 p-3 border">
+                                      <div class=       "row">
+                                          <div class="col-6">
+                                              <h6>Subtotal</h6>
+                                              <h6>Discount</h6>
+                                              <a href="javascript:void(0)" class="black_color"><h6 class="m-0" (click)="open_tax_modal(taxmodal)" >Tax({{tax_rate_order}}%)</h6></a>
+                                          </div>
+                                          <div class="col-6 text-right">
+                                              <h6><b>${{total_pay | roundNumber}}</b></h6>
+                                              <h6><b>0%</b></h6>
+                                              <h6 class="m-0"><b>${{tax_amount | number:'.2'}}</b></h6>
+                                          </div>
+                                      </div>
+                                  </div>
+                              <div class="bg-light-grey p-3 border h-60">
+                                <h5 class="pull-left">Total ({{total_order_count}} Items)</h5>
+                                <h5 class="pull-right"><b>${{(total_pay + tax_amount) | number:'.2'}}</b></h5>
+                              </div>
+                              <div class="p-3 border">
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <button class="btn bg-white w-100 h-60 border border-success text-success"> <h5 class="m-0"> Save </h5></button>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <button class="btn btn-success w-100 h-60" routerLink="/payment" > <h5 class="m-0"> Pay Now </h5></button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div [ngClass]="{'col-md-8':orders!='','col-md-12':orders == ''}">
+                          <h5>Our Products</h5>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-4" *ngFor="let item of total_items; let i =index" style="margin-bottom: 10px;">
+                                <a href="javascript:void(0)" routerLink="/booking-order" [queryParams]="{'id':item.menu_id}" >
+                                    <div class="bg-light p-3 border position-relative">
+                                        <h4 class="text-dark">{{item.menu_name | capitalizeFirst}} <span class="pull-right prodct-inr-crcl">{{i+1}}</span> </h4>
+                                    </div>
+                                </a>
+                            </div>
+                            <p *ngIf="total_items == ''" class="margin-0-auto">No item found.</p>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <ng-template #quantitymodal>
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="btn bg-light border pull-left">Edit modifier</button>
+                <button type="button" class="close" (click)="close_modal()" >&times;</button>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-3">
+                      <button class="btn bg-light border w-100" [disabled]="quantity == 0" (click)="minus_quantity()">-</button>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group"> 
+                        <input type="text" class="form-control" placeholder="Quantity" [(ngModel)]="quantity"  maxlength="2">
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <button class="btn bg-light border w-100" [disabled]="quantity == 100 " (click)="add_quantity()" >+</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <button class="btn bg-light border w-100" (click)="remove_item()" >Remove Item</button>
+                    </div>
+                    <div class="col-6">
+                      <button class="btn bg-light border w-100">Add Discount</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn w-100" (click)="close_tax_modal();" > Cancel</button>
+                  <button type="button" class="btn bg-success text-white w-100" (click)="save_quantity()" >Save</button>
+                </div>
+                
+            </ng-template>
+
+            <!-- Modal poup for selecting tax  -->
+            <ng-template #taxmodal>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h5>Add Tax</h5>
+                    <button type="button" class="close" (click)="close_modal()" >&times;</button>
+                    </div>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="form-group"> 
+                            <select class="col-md-12" [(ngModel)]="tax_rate_order" style="border-radius:5px;padding:5px">
+                                <option value="0" selected>Select tax</option>
+                                <option *ngFor="let t of tax_list" value="{{t.tax_rate}}">{{t.tax_name | capitalizeFirst}}({{t.tax_rate}}%)</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn w-10" (click)="close_tax_modal();" > Cancel</button>
+                      <button type="button" class="btn bg-success text-white w-10" (click)="selected_tax()" >Save</button>
+                    </div>
+                    
+                </ng-template>

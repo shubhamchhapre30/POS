@@ -1,0 +1,132 @@
+<app-header></app-header>
+<section>
+    <div class="height50"></div>
+  <app-sidebar></app-sidebar>
+  <div class="p-0-xs mt-5 ml-9">
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+            <div class="position-fixed w-44p5">
+              <!-- <input class="form-control search-dsbrd border-0" type="text" placeholder="Search by Items" aria-label="Search"> -->
+              <!-- <i class="fa fa-search search-icon" style="left: 25px;"></i> -->
+              <div class="height20"></div>
+                <div class="bg-light-grey p-3 border border-bottom-0">
+                  <h5 class="m-0">Current Order</h5>
+                </div>
+                <div class="add-booking">
+                  <div class="bg-light p-3 border border-bottom-0" *ngFor="let item of orders">
+                    <div class="row">
+                      <div class="col-6">
+                        <h6>{{item.quantity}} {{item.name | capitalizeFirst}}</h6>
+                        <p class="text-secondary m-0" *ngFor="let extra of item.extra" >1 {{extra.name | capitalizeFirst }}</p>
+                      </div>
+                      <div class="col-6 mt-2">
+                        <h6 class="pull-right text-right">${{item.price | roundNumber}}</h6>
+                        <h6 class="text-right" style="clear: both;" *ngFor="let extra of item.extra">${{extra.price | roundNumber}}</h6>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="bg-light ptb-1 p-3 border">
+                    <div class="row">
+                      <div class="col-6">
+                        <h6>Subtotal</h6>
+                        <h6>Discount</h6>
+                        <h6 class="m-0">Tax</h6>
+                      </div>
+                      <div class="col-6 text-right">
+                        <h6><b>${{total_pay | roundNumber}}</b></h6>
+                        <h6><b>0%</b></h6>
+                        <h6 class="m-0"><b>$0.00</b></h6>
+                      </div>
+                    </div>
+                  </div>
+                <div class="bg-light-grey p-3 border h-60">
+                <h5 class="pull-left">Total ({{total_order_count}} Items)</h5>
+                <h5 class="pull-right"><b>${{total_pay | roundNumber}}</b></h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <!-- <div class="row mt-3 direction-r">
+                <div class="col-md-2">
+                  <a href="booking-orders-done.php" class="btn btn-secondary w-100 text-white">Back</a>
+                </div>
+              </div> -->
+              <div class="height20"></div>
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table bg-white border">
+                    <thead>
+                      <tr>
+                        <td colspan="3">
+                          <h5 class="mb-1">Pay for this orders</h5>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Subtotal</td>
+                        <td class="text-right"></td>
+                        <th class="text-right">${{total_pay | roundNumber}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Tax</td>
+                        <td class="text-right table-btn">
+                          <button class="btn btn-light border w-50">Remove Tax</button>
+                        </td>
+                        <th class="text-right">$0.00</th>
+                      </tr>
+                      <tr>
+                        <td>Service Charge (10%)</td>
+                        <td class="text-right table-btn">
+                          <button class="btn btn-light border w-50">Add</button>
+                        </td>
+                        <th class="text-right">$0.00</th>
+                      </tr>
+                      <tr>
+                        <td>Total</td>
+                        <td></td>
+                        <th class="text-right">${{total_pay | roundNumber}}</th>
+                      </tr>
+                      <tr>
+                        <td>Amount Remaining</td>
+                        <td></td>
+                        <th class="text-right">${{total_pay | roundNumber}}</th>
+                      </tr>
+                      <tr class="bg-light-grey border">
+                        <td>Payment 1</td>
+                        <td></td>
+                        <th class="text-right">(${{total_pay | roundNumber}})</th>
+                      </tr>
+                    </tbody>
+                </table>
+              </div>
+              <div class="col-md-12">
+                <div class="height10"></div>
+                <div class="bg-white border p-3">
+                  <h5 class="mb-3">Ways to pay</h5>
+                  <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn bg-white border border-info w-100"> Cash </button>
+                      </div>
+                      <div class="col-md-3">
+                        <button class="btn bg-white border border-danger w-100"> Manual Card </button>
+                      </div>
+                      <div class="col-md-3">
+                        <button class="btn bg-white border border-success w-100"> Check </button>
+                      </div>
+                      <div class="col-md-3">
+                        <button class="btn bg-white border border-primary w-100"> Certificate </button>
+                      </div>
+                      <div id="paypal-button-container"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</section>

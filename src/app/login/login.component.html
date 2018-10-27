@@ -1,0 +1,35 @@
+<app-header></app-header>
+<section style="height: 100vh; display: flex; align-items: center;">
+	<div class="height40"></div>
+		<div class="container">
+			<div class="row">
+			  	<div class="col-md-4 text-center bg-light offset-4 p-3 pt-5 pb-5 mt-5 shadow-sm rounded">
+			  		<div class="height40 d-md-none"></div>
+			  		<div class="w-100-xs mx-auto">
+				  		<h3>Login</h3>
+							<div class="height20"></div>
+							<div *ngIf = "iserror" class="error_msg">{{error}}</div>
+				  		<form [formGroup]="login_form" (submit)="login(login_form.value)" >
+							<div class="form-group">
+                <input type="text" class="form-control" formControlName="email" placeholder="Username">
+                <p *ngIf="login_form.get('email').hasError('required') && login_form.get('email').touched" class="help-inline">
+                  This field is required.
+                </p>
+                <p *ngIf="login_form.get('email').hasError('pattern') && login_form.get('email').touched" class="help-inline">
+                    Please enter a valid email address.
+                </p>
+							</div>
+							<div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                <p *ngIf="login_form.get('password').hasError('required') && login_form.get('password').touched" class="help-inline">
+                  This field is required.
+                </p>
+								<p class="text-right pt-1"><a href="javascript:void(0)" class="text-secondary">Forgot password?</a></p>
+							</div>
+							<button type="submit"  [disabled]="!login_form.valid" class="btn btn-danger btn-lg w-100">Submit</button>
+						</form>					  		
+				  	</div>
+			  	</div>
+		  	</div>
+		</div>
+</section>

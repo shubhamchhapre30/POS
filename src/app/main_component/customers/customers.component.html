@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<div id="content-wrapper">
+
+        <div class="container-fluid" style="padding-top: 7%;">
+    
+          <div class="card mb-3">
+              <div class="card-header">
+                <span><i class="fa fa-list" aria-hidden="true"></i> <b>Customers</b> </span>
+                <button type="button" routerLink="/dashboard" class="btn pull-right btn-success">Back</button>
+              </div>
+              <div class="card-body">
+                 <table  style="margin-top: 20px;">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Customer Name</th>
+                      <th>Moblie</th>
+                      <th>Email</th>
+                      <th>Address</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Demo</td>
+                      <td>5656565889</td>
+                      <td>demo@gmail.com</td>
+                      <td>Indore</td>
+                    </tr>
+                    <tr *ngIf="customers == ''">
+                      <td colspan="5">No item found.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="card-footer small text-muted"></div>
+            </div>
+        </div>
+      </div>
+    

@@ -1,0 +1,108 @@
+
+}/*! 02.0 - RESET */
+body {
+	font-family: "open-sans", sans-serif;
+}
+body {
+	background: #f5f4f4;
+}
+
+/* custom -- strat */
+.height10 {height:10px; clear:both;}
+.height20 {height:20px; clear:both;}
+.height30 {height:30px; clear:both;}
+.height40 {height:40px; clear:both;}
+.height50 {height:50px; clear:both;}
+.font-18 {font-size: 18px;}
+.direction-r {direction: rtl;}
+.ml-9 {margin-left: 90px;}
+.color-6 {color: #666;} 
+.bg-light-grey {background: #eaeaea;}
+.white-box {min-height: 565px;}
+.ptb-1 {padding-top: 10px!important; padding-bottom: 10px!important;}
+.bg-white {background: #fff;}
+.text-white {color: #fff;}
+.z-index-1 {z-index: 1;}
+.w-41 {width: 41%!important;}
+.h-60 {height: 60px;}
+.h-max-100 {max-height: 100px;}
+.margin-0-auto {margin: 0 auto;}
+.cursor-pointer {cursor: pointer;}
+a:hover {text-decoration: none;}
+.w-44p5 {width: 29%;}
+/* custom -- end */
+
+/* left menu -- strat */
+.left-menu {position: fixed; top: 0px; bottom: 0px; left: 0px; background: #222; width: 15px; width: 90px; z-index: 1;
+	margin-top: 75px; color: #999; text-align: center; padding: 25px 0px; min-height: 582px;}
+.left-menu .btn-danger {position: absolute; left: 15px; bottom: 20px;}
+.left-menu .left-menu-box {padding: 15px 10px; cursor: pointer; border-bottom: 1px solid #222;}
+.left-menu .left-menu-box:hover, .left-menu .left-menu-box.active {background: #424242; border-bottom: 1px solid #666;}
+.left-menu .l-menu-icon {max-height: 25px; margin-bottom: 10px;}
+.left-menu .l-menu-txt {font-size: 14px; margin: 0px; color: #999}
+.search-dsbrd {padding:30px 30px 30px 50px; border-radius: 35px; background: #eaeaea;}
+.search-icon {position: absolute; top: 24px; left: 40px;}
+/* left menu -- end */
+
+/* navbar -- strat */
+.logo img {width: 190px;}
+.profile-box {height: 75px; background: #0cc;}
+.profile-box .profile-btn {background: #fff; border-radius: 0px; height: 100%; font-size: 20px; color: #333;
+	border-bottom: 2px solid #f9001d; padding-left: 0px;}
+.profile-box .profile-btn:focus {box-shadow: none;}
+.profile-box .profile-btn .profile-img {width: 40px; height: 40px; background: #ccc; border-radius: 50%; margin-right: 10px;}
+/* navbar -- end */
+
+/* activation -- start */
+.steps .line {position: absolute; width: 100%; height: 1px; background: #666; top: 74px;}
+.steps .box {display: inline-block; width: 32.7%; box-sizing: border-box; font-size: 20px; color: #666;}
+.steps .box .circle {width: 18px; height: 18px; background: #fff; display: inline-block; border-radius: 50%; border:1px solid #46ae0d; position: relative;}
+.steps .box .circle .inside {width: 10px; height: 10px; background: #46ae0d; display: inline-block; border-radius: 50%; position: absolute; left: 3px; top: 3px;}
+/* activation -- end*/
+
+/* passcode -- start */
+.pscd .pscd-txt, .pscd .pscd-btn {width: 20%; height: 75px; font-size: 26px; text-align: center; color: #333; background: #f5f5f5; border: 1px solid #e2e2e2; border-radius: 10px;}
+.pscd .pscd-btn {width: 27%; border-radius: 0px; font-size: 24px; color: #333; margin-bottom: 3px; cursor: pointer;}
+.pscd .pscd-btn img {margin-bottom: 8px;}
+
+.btn .white-btn, .btn .red-btn {background: #0cc!important;}
+/* passcode -- end */
+
+/* main-menu - start */
+
+.add-table, .add-booking, .add-booking-order {height: 250px; overflow: auto; background: #f8f9fa; cursor: pointer;}
+.add-booking {height: 260px;}
+.add-table, .add-booking-order {height: 168px;}
+.prodct-inr-crcl {
+	width: 30px;
+    height: 30px;
+    padding: 2px 8px;
+    border-radius: 50%;
+    border: 2px solid #28a745;
+    position: absolute;
+    right: -12px;
+    top: -8px;
+    background: #fff;
+    font-size: 16px;
+}
+.cash-icon {font-size: 22px!important; vertical-align: middle; margin-right: 5px;}
+.ticket-date {position: absolute; top: 190px; background: #dc3545; right: 15px; color: #fff; padding: 5px 10px; border-radius: 2px;}
+.booking-img {height:200px; object-fit: cover; object-position: center;}
+
+/* main-menu - end */
+
+.table-btn {padding: 0!important; padding-top: 5px!important;}
+
+/* responsive -- strat */
+@media screen and (max-width: 600px) {
+	.p-0-xs {padding: 0px!important;}
+	.logo img {width: 130px;}
+	.steps .box {width: 32%; font-size: 16px;}
+	.w-100-xs {width: 100%!important;}
+}
+@media screen and (max-width: 480px) {
+	.logo img {width: 130px;}
+	.steps .box {width: 32%; font-size: 16px;}
+	.steps .line {top: 80px;}
+}
+/* responsive -- end */

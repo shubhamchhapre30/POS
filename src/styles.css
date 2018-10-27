@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+.text-secondary{
+    margin-left: 25px !important;
+ }
+ .badge_logo{
+    display: inline-block;
+    font-size: 1em;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    text-align: center;
+    border-radius: 50%;
+    background: #4b5b63;
+    vertical-align: middle;
+    color: white;
+    font-weight: 500;
+}
+
+.image_height{
+    height: 130px;
+}
+
+.black_color{
+    color: black !important;
+}

@@ -1,0 +1,14 @@
+table{
+    width: 100%;
+    border:1px solid #dfdfdf;
+}
+table thead tr th{
+    padding: 9px;
+    border-bottom: 1px solid #dfdfdf;
+    border-left: 1px solid #dfdfdf;
+}
+table tbody tr td{
+    border-left: 1px solid #dfdfdf;
+    padding: 9px;
+    border-bottom: 1px solid #dfdfdf;
+}
